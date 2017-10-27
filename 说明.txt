@@ -1,0 +1,54 @@
+测试springboot配置jsp、freemarker、thymeleaf三种视图的配置。
+1.jsp
+pom文件中的依赖关系为：
+<!--jsp依赖begin-->
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <!--<scope>provided</scope>-->
+</dependency>
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jstl</artifactId>
+</dependency>
+<!--jsp依赖end-->
+<dependency>
+    <groupId>org.apache.tomcat.embed</groupId>
+    <artifactId>tomcat-embed-jasper</artifactId>
+    <!--<scope>provided</scope>-->
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-tomcat</artifactId>
+    <!--<scope>provided</scope>-->
+</dependency>
+
+application.properties中配置为：
+#SpringMvc
+spring.mvc.view.prefix=/WEB-INF/jsp/
+spring.mvc.view.suffix=.jsp
+此时需要注意文件结构，必须有src/main/webapp/WEB_INF/jsp/*.jsp文件存在。
+2.freemarker
+pom文件中的依赖关系为：
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-freemarker</artifactId>
+</dependency>
+
+application.properties中配置为：
+#freemarker
+spring.freemarker.template-loader-path=classpath:/templates/ftl/
+spring.freemarker.suffix=.ftl
+spring.freemarker.cache=false
+此时文件目录结构应有src/main/resources/templates/ftl/*.ftl文件存在。
+3.thymeleaf
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
+
+application.properties中配置为：
+spring.thymeleaf.prefix=classpath:/templates/html/
+spring.thymeleaf.suffix=.html
+spring.thymeleaf.cache=false
+此时文件目录结构应有src/main/resources/templates/html/*.html文件存在。
